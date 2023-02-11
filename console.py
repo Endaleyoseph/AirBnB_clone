@@ -13,6 +13,9 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
+
+    """loads from json file"""
+
     prompt = '(hbnb) '
     my_dict = {
         "BaseModel": BaseModel,
@@ -56,7 +59,7 @@ class HBNBCommand(cmd.Cmd):
         """
         Prints the string representation of an instance
         based on the class name and id
-        Structure: show [class name] [id]
+        usage: show [class name] [id]
         """
         tokens = shlex.split(arg)
         if len(tokens) == 0:
@@ -81,7 +84,7 @@ class HBNBCommand(cmd.Cmd):
         """
         Deletes an instance based on the class name and id
         (saves the changes into the JSON file)
-        Structure: destroy [class name] [id]
+        usage: destroy [class name] [id]
         """
         tokens = shlex.split(arg)
         if len(tokens) == 0:
@@ -106,7 +109,7 @@ class HBNBCommand(cmd.Cmd):
         """
         Prints all string representation of all instances
         based on the class name
-        Structure: all [class name] or all
+        usage: all [class name] or all
         """
         # prints the whole file
         storage.reload()
@@ -131,7 +134,7 @@ class HBNBCommand(cmd.Cmd):
         Updates an instance based on the class name and
         id by adding or updating attribute
         (save the change into the JSON file).
-        Structure: update [class name] [id] [arg_name] [arg_value]
+        usage: update [class name] [id] [arg_name] [arg_value]
         """
         if not arg:
             print("** class name missing **")
@@ -168,6 +171,7 @@ class HBNBCommand(cmd.Cmd):
     def do_count(self, arg):
         """
         Counts and prints the number of instances of a class
+        usage: count
         """
         num_instance = 0
         objects_dict = storage.all()
